@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/10 11:03:22 by zbatik            #+#    #+#             */
-/*   Updated: 2018/08/16 17:07:09 by event            ###   ########.fr       */
+/*   Updated: 2018/08/16 19:38:05 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ typedef struct	s_graph
 
 typedef struct	s_lem
 {
+	int		num_ants;
 	int		num_rooms;
 	t_graph	**map;
 	char	**raw;
+	char	**room_names
 
 }				t_lem;
 
