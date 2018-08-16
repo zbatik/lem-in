@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:47:03 by event             #+#    #+#             */
-/*   Updated: 2018/08/16 14:23:17 by event            ###   ########.fr       */
+/*   Updated: 2018/08/16 14:42:50 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,21 @@ void	add_connection(t_graph **rooms, int room1, int room2)
 	}
 }
 
+void map_del(t_graph ***room_list)
+{
+	t_graph *room;
+
+	while (**room_list)
+	{
+		room = **room_list;
+		ft_strdel(&room->name);
+		free(room->links);
+		free(room);
+		room = NULL;
+		(*room_list)++;	
+	}
+	*room_list = NULL;
+}
+
+		
 
