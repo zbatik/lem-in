@@ -6,13 +6,13 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:47:03 by event             #+#    #+#             */
-/*   Updated: 2018/08/16 14:42:50 by event            ###   ########.fr       */
+/*   Updated: 2018/08/17 15:47:33 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
- 
-t_graph	*new_room(int room_num, int num_rooms, char *room_name)
+
+static t_graph	*new_room(int room_num, int num_rooms, char *room_name)
 {
 	t_graph *room;
 
@@ -20,13 +20,14 @@ t_graph	*new_room(int room_num, int num_rooms, char *room_name)
 	room->name = room_name;
 	room->num = room_num;
 	room->visited = 0;
-    room->ant = 0;
+	room->start = 0;
+	room->end = 0;
 	room->links = malloc(sizeof(&room) * (num_rooms + 1));
-    room->links[0] = NULL;
-    return (room);
+	room->links[0] = NULL;
+	return (room);
 }
 
-t_graph	**new_map(int num_rooms, char **room_names)
+t_graph			**new_map(int num_rooms, char **room_names)
 {
 	t_graph	**room_list;
 	int		i;
@@ -41,7 +42,7 @@ t_graph	**new_map(int num_rooms, char **room_names)
 	return (room_list);
 }
 
-void	add_connection(t_graph **rooms, int room1, int room2)
+void			add_connection(t_graph **rooms, int room1, int room2)
 {
 	t_graph *room;
 	int		i;
@@ -65,7 +66,7 @@ void	add_connection(t_graph **rooms, int room1, int room2)
 	}
 }
 
-void map_del(t_graph ***room_list)
+void			map_del(t_graph ***room_list)
 {
 	t_graph *room;
 
@@ -76,10 +77,7 @@ void map_del(t_graph ***room_list)
 		free(room->links);
 		free(room);
 		room = NULL;
-		(*room_list)++;	
+		(*room_list)++;
 	}
 	*room_list = NULL;
 }
-
-		
-
