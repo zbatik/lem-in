@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 13:00:33 by event             #+#    #+#             */
-/*   Updated: 2018/08/19 17:38:19 by event            ###   ########.fr       */
+/*   Updated: 2018/08/20 13:06:50 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ void		print_room(t_graph *room)
 	ft_putchar('\n');
 	ft_putstr("Room Name:\t");
 	ft_putendl(room->name);
+	ft_putstr("Num links:\t");
+	ft_putnbr(room->num_links);
+	ft_putchar('\n');
 	print_links(room);
 	ft_putchar('\n');
 }

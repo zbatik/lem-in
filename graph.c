@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:47:03 by event             #+#    #+#             */
-/*   Updated: 2018/08/17 15:47:33 by event            ###   ########.fr       */
+/*   Updated: 2018/08/20 17:09:05 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,21 @@ t_graph			**new_map(int num_rooms, char **room_names)
 	return (room_list);
 }
 
+static void		set_connection(t_graph **rooms, t_graph *room, int conn_room)
+{
+	int i;
+
+	i = -1;
+	while (room->links[++i])
+	{
+		if (room->links[i]->num == conn_room)
+			return ;
+	}
+	room->links[room->num_links] = rooms[conn_room];
+	room->links[room->num_links + 1] = NULL;
+	room->num_links += 1;
+}
+
 void			add_connection(t_graph **rooms, int room1, int room2)
 {
 	t_graph *room;
@@ -52,17 +67,9 @@ void			add_connection(t_graph **rooms, int room1, int room2)
 	{
 		room = rooms[i];
 		if (room->num == room1)
-		{
-			room->links[room->num_links] = rooms[room2];
-			room->links[room->num_links + 1] = NULL;
-			room->num_links += 1;
-		}
+			set_connection(rooms, room, room2);
 		if (room->num == room2)
-		{
-			room->links[room->num_links] = rooms[room1];
-			room->links[room->num_links + 1] = NULL;
-			room->num_links += 1;
-		}
+			set_connection(rooms, room, room1);
 	}
 }
 

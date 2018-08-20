@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 15:13:27 by event             #+#    #+#             */
-/*   Updated: 2018/08/19 17:23:20 by event            ###   ########.fr       */
+/*   Updated: 2018/08/20 17:25:59 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static char		**get_input(void)
 	int		ret;
 
 	ret = read(0, &buf, 4096);
-	if (ret < 0)
+	if (ret < 1)
 	{
-		ft_puterror("BAD READ");
+		ft_puterror("Error: bad input");
 		exit(-1);
 	}
 	buf[ret] = 0;
@@ -60,7 +60,15 @@ static char		**get_room_names(char **raw, int num_rooms)
 	while (*raw != NULL)
 	{
 		if (isroomdesc(*raw))
-			room_names[i++] = ft_strsub(*raw, 0, ft_indexcin(*raw, ' '));
+		{
+			room_names[i] = ft_strsub(*raw, 0, ft_indexcin(*raw, ' '));
+			if (*room_names[i] == 'L')
+			{
+				ft_puterror("Error: invalid room name");
+				exit(-1);
+			}
+			i++;
+		}
 		raw++;
 	}
 	room_names[i] = NULL;
@@ -75,7 +83,13 @@ t_lem			*init(void)
 
 	lem = malloc(sizeof(lem));
 	raw = get_input();
-	lem->num_ants = ft_atoi(raw[0]);
+	if (ft_isnumber(raw[0]))
+		lem->num_ants = ft_atoi(raw[0]);
+	else
+	{
+		ft_puterror("Error: no ants");
+		exit(-1);
+	}
 	lem->num_rooms = count_rooms(raw);
 	room_names = get_room_names(raw, lem->num_rooms);
 	lem->map = new_map(lem->num_rooms, room_names);
@@ -83,7 +97,12 @@ t_lem			*init(void)
 	start_end(lem->map, raw, "start");
 	start_end(lem->map, raw, "end");
 	ft_arrdel(&room_names, lem->num_rooms);
-//	ft_arrdel(raw);
-//	ft_putstrarr(raw);
+	while (*raw)
+	{
+		free(*raw);
+		*raw = NULL;
+	}
+	raw = NULL;
+//	ft_arrdel(&raw, ft_strarrlen(raw));
 	return (lem);
 }
