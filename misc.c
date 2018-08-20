@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 15:51:58 by event             #+#    #+#             */
-/*   Updated: 2018/08/17 16:31:53 by event            ###   ########.fr       */
+/*   Updated: 2018/08/19 16:09:07 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ int	room_num_from_name(char *name, t_graph **map);
 	while (*map)
 	{
 		if (ft_strequ((*map)->name), name)
-			return ((*map)->numi);
+			return ((*map)->num);
 		map++;
 	}
 	return (-1);
 }
-

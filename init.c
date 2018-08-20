@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 15:13:27 by event             #+#    #+#             */
-/*   Updated: 2018/08/17 15:48:53 by event            ###   ########.fr       */
+/*   Updated: 2018/08/19 17:23:20 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 static char		**get_input(void)
 {
-	char	buf[256];
-	char	*input;
+	char	buf[4096];
 	char	**raw;
 	int		ret;
 
-	input = NULL;
-	ret = 0;
-	input = ft_strnew(0);
-	while ((ret = read(0, &buf, 256) != 0))
-		ft_strreplace(&input, ft_strjoin(buf, input));
-	raw = ft_strsplit(input, '\n');
-	free(input);
+	ret = read(0, &buf, 4096);
+	if (ret < 0)
+	{
+		ft_puterror("BAD READ");
+		exit(-1);
+	}
+	buf[ret] = 0;
+	raw = ft_strsplit(buf, '\n');
 	return (raw);
 }
 
 static t_bool	isroomdesc(char *line)
 {
-	if (ft_countc(line, ' ') && *line != '#')
+	if (ft_countc(line, ' ') == 2 && *line != '#')
 		return (1);
 	return (0);
 }
@@ -76,10 +76,14 @@ t_lem			*init(void)
 	lem = malloc(sizeof(lem));
 	raw = get_input();
 	lem->num_ants = ft_atoi(raw[0]);
-	lem->num_rooms = count_rooms(raw + 1);
+	lem->num_rooms = count_rooms(raw);
 	room_names = get_room_names(raw, lem->num_rooms);
 	lem->map = new_map(lem->num_rooms, room_names);
+	set_connections(lem->map, raw);
+	start_end(lem->map, raw, "start");
+	start_end(lem->map, raw, "end");
 	ft_arrdel(&room_names, lem->num_rooms);
 //	ft_arrdel(raw);
+//	ft_putstrarr(raw);
 	return (lem);
 }

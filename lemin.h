@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/10 11:03:22 by zbatik            #+#    #+#             */
-/*   Updated: 2018/08/17 16:32:12 by event            ###   ########.fr       */
+/*   Updated: 2018/08/19 17:20:21 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	add_connection(t_graph **rooms, int room1, int room2);
 void	map_del(t_graph ***room);
 
 t_lem	*init();
+void	set_connections(t_graph **rooms, char **raw);
+void	start_end(t_graph **rooms, char **raw, char *opt);
 
 void	print_map(t_graph **map);
 void	print_room(t_graph *room);
