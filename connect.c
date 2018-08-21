@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/19 16:11:34 by event             #+#    #+#             */
-/*   Updated: 2018/08/20 17:23:32 by event            ###   ########.fr       */
+/*   Updated: 2018/08/21 12:01:10 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ static t_bool	isconnectdesc(char *line)
 {
 	if (ft_countc(line, '-') == 1 && *line != '#'
 			&& ft_countc(line, ' ') == 0)
-	   return (1);
+		return (1);
 	return (0);
 }
 
 void			set_connections(t_graph **rooms, char **raw)
 {
-	int 	room1;
-	int		room2;
-	int		ind;
+	int room1;
+	int room2;
+	int ind;
 
 	while (*raw)
 	{
@@ -50,7 +50,7 @@ void			set_connections(t_graph **rooms, char **raw)
 				exit(-1);
 			}
 			add_connection(rooms, room1, room2);
-		}	
+		}
 		raw++;
 	}
 }
@@ -73,7 +73,7 @@ static void		set_startend(t_graph **rooms, int room_num, char *opt)
 	}
 }
 
-void		start_end(t_graph **rooms, char **raw, char *opt)
+void			start_end(t_graph **rooms, char **raw, char *opt)
 {
 	int room;
 

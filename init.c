@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 15:13:27 by event             #+#    #+#             */
-/*   Updated: 2018/08/20 17:25:59 by event            ###   ########.fr       */
+/*   Updated: 2018/08/21 12:03:54 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,7 @@ t_lem			*init(void)
 	if (ft_isnumber(raw[0]))
 		lem->num_ants = ft_atoi(raw[0]);
 	else
-	{
-		ft_puterror("Error: no ants");
-		exit(-1);
-	}
+		put_error("Error: no ants");
 	lem->num_rooms = count_rooms(raw);
 	room_names = get_room_names(raw, lem->num_rooms);
 	lem->map = new_map(lem->num_rooms, room_names);
@@ -103,6 +100,5 @@ t_lem			*init(void)
 		*raw = NULL;
 	}
 	raw = NULL;
-//	ft_arrdel(&raw, ft_strarrlen(raw));
 	return (lem);
 }

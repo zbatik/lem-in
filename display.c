@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 13:00:33 by event             #+#    #+#             */
-/*   Updated: 2018/08/20 13:06:50 by event            ###   ########.fr       */
+/*   Updated: 2018/08/21 12:02:57 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,10 @@ void		print_map(t_graph **map)
 		print_room(*map);
 		map++;
 	}
+}
+
+void		put_error(char *error)
+{
+	ft_puterror(error);
+	exit(-1);
 }

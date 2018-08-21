@@ -6,13 +6,24 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 11:43:40 by event             #+#    #+#             */
-/*   Updated: 2018/08/20 16:00:58 by event            ###   ########.fr       */
+/*   Updated: 2018/08/21 11:59:40 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-t_graph	*select_start(t_graph **rooms)
+static char		*num2name(int num, t_graph **map)
+{
+	while (*map)
+	{
+		if (num == (*map)->num)
+			return ((*map)->name);
+		map++;
+	}
+	return ("");
+}
+
+static t_graph	*select_start(t_graph **rooms)
 {
 	while (*rooms)
 	{
@@ -23,7 +34,14 @@ t_graph	*select_start(t_graph **rooms)
 	return (NULL);
 }
 
-int	search(t_graph *start)
+static int		update_search(t_graph *room, int *ind, int *moves)
+{
+	moves[*ind] = room->num;
+	*ind += 1;
+	return (1);
+}
+
+static int		search(t_graph *start, int *ind, int *moves)
 {
 	int		i;
 	t_graph *room;
@@ -37,26 +55,33 @@ int	search(t_graph *start)
 		else
 			room->visited = 1;
 		if (room->end)
-		{
-			ft_putendl(room->name);
-			return (room->num);;
-		}
-		search(room);
-		ft_putendl(room->name);
+			return (update_search(room, ind, moves));
+		if (search(room, ind, moves))
+			return (update_search(room, ind, moves));
 	}
 	return (0);
 }
 
-void	algo(t_lem *lem)
+void			algo(t_lem *lem)
 {
 	t_graph	*start;
+	int		*moves;
+	int		ind;
 
+	ind = 0;
+	moves = malloc(sizeof(int) * lem->num_rooms);
 	start = select_start(lem->map);
 	if (start == NULL)
 	{
 		ft_puterror("Error: no starting room");
 		exit(-1);
 	}
-	search(start);
-	ft_putendl(start->name);
+	search(start, &ind, moves);
+	moves[ind] = start->num;
+	while (ind >= 0)
+	{
+		ft_putstr(num2name(moves[ind--], lem->map));
+		ft_putstr("->");
+	}
+	ft_putendl("");
 }
