@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 11:43:40 by event             #+#    #+#             */
-/*   Updated: 2018/08/21 13:11:00 by event            ###   ########.fr       */
+/*   Updated: 2018/08/21 13:24:40 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static int		search(t_graph *start, int *ind, int *moves)
 	t_graph *room;
 
 	i = -1;
+	room = NULL;
 	while (++i < start->num_links)
 	{
 		room = start->links[i];

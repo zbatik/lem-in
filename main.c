@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/10 11:00:47 by zbatik            #+#    #+#             */
-/*   Updated: 2018/08/21 12:05:42 by event            ###   ########.fr       */
+/*   Updated: 2018/08/21 13:45:57 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ int	main(void)
 
 	lem = init();
 	algo(lem);
-	map_del(&lem->map);
+	map_del(&lem->map, lem->num_rooms);
+	free(lem->map);
+	lem->map = NULL;
 	free(lem);
+	lem = NULL;
 }

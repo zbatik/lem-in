@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 15:13:27 by event             #+#    #+#             */
-/*   Updated: 2018/08/21 13:07:30 by event            ###   ########.fr       */
+/*   Updated: 2018/08/21 14:02:12 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,7 @@ t_lem			*init(void)
 	set_connections(lem->map, raw);
 	start_end(lem->map, raw, "start");
 	start_end(lem->map, raw, "end");
-	ft_arrdel(&room_names, lem->num_rooms);
-	while (*raw)
-	{
-		free(*raw);
-		*raw = NULL;
-	}
-	raw = NULL;
+	ft_arrdel(&room_names, lem->num_rooms + 1);
+	ft_arrdel(&raw, ft_strarrlen(raw));
 	return (lem);
 }

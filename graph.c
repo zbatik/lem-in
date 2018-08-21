@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:47:03 by event             #+#    #+#             */
-/*   Updated: 2018/08/21 11:31:54 by event            ###   ########.fr       */
+/*   Updated: 2018/08/21 13:49:13 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static t_graph	*new_room(int room_num, int num_rooms, char *room_name)
 {
 	t_graph *room;
+	int i;
 
 	room = malloc(sizeof(t_graph));
 	room->name = room_name;
@@ -23,7 +24,9 @@ static t_graph	*new_room(int room_num, int num_rooms, char *room_name)
 	room->start = 0;
 	room->end = 0;
 	room->links = malloc(sizeof(&room) * (num_rooms + 1));
-	room->links[0] = NULL;
+	i = -1;
+	while (++i <= num_rooms + 1)
+		room->links[i] = NULL;
 	return (room);
 }
 
@@ -35,9 +38,7 @@ t_graph			**new_map(int num_rooms, char **room_names)
 	room_list = malloc(sizeof(room_list) * (num_rooms + 1));
 	i = -1;
 	while (++i < num_rooms)
-	{
 		room_list[i] = new_room(i, num_rooms, ft_strdup(room_names[i]));
-	}
 	room_list[i] = NULL;
 	return (room_list);
 }
@@ -53,7 +54,6 @@ static void		set_connection(t_graph **rooms, t_graph *room, int conn_room)
 			return ;
 	}
 	room->links[room->num_links] = rooms[conn_room];
-	room->links[room->num_links + 1] = NULL;
 	room->num_links += 1;
 }
 
@@ -63,6 +63,7 @@ void			add_connection(t_graph **rooms, int room1, int room2)
 	int		i;
 
 	i = -1;
+	room = NULL;
 	while (rooms[++i])
 	{
 		room = rooms[i];
@@ -73,18 +74,20 @@ void			add_connection(t_graph **rooms, int room1, int room2)
 	}
 }
 
-void			map_del(t_graph ***room_list)
+void			map_del(t_graph ***room_list, int num_rooms)
 {
+	int i;
 	t_graph *room;
 
-	while (**room_list)
+	i = -1;
+	while (++i < num_rooms)
 	{
-		room = **room_list;
+		room = (*room_list)[i];
 		ft_strdel(&room->name);
 		free(room->links);
 		free(room);
 		room = NULL;
-		(*room_list)++;
 	}
+	free(*room_list);
 	*room_list = NULL;
 }

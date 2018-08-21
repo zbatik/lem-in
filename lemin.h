@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/10 11:03:22 by zbatik            #+#    #+#             */
-/*   Updated: 2018/08/21 13:09:54 by event            ###   ########.fr       */
+/*   Updated: 2018/08/21 13:44:00 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct	s_lem
 
 t_graph			**new_map(int num_rooms, char **room_names);
 void			add_connection(t_graph **rooms, int room1, int room2);
-void			map_del(t_graph ***room);
+void			map_del(t_graph ***room, int num_rooms);
 t_lem			*init(void);
 void			set_connections(t_graph **rooms, char **raw);
 void			start_end(t_graph **rooms, char **raw, char *opt);

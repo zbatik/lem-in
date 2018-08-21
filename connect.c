@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/19 16:11:34 by event             #+#    #+#             */
-/*   Updated: 2018/08/21 12:01:10 by event            ###   ########.fr       */
+/*   Updated: 2018/08/21 13:24:21 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ void			set_connections(t_graph **rooms, char **raw)
 	int room2;
 	int ind;
 
+	room1 = -1;
+	room2 = -1;
+	ind = -1;
 	while (*raw)
 	{
 		if (isconnectdesc(*raw))
@@ -77,6 +80,7 @@ void			start_end(t_graph **rooms, char **raw, char *opt)
 {
 	int room;
 
+	room = -1;
 	while (*raw)
 	{
 		if (ft_strlen(*raw) > 2)
