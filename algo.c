@@ -6,22 +6,11 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 11:43:40 by event             #+#    #+#             */
-/*   Updated: 2018/08/21 11:59:40 by event            ###   ########.fr       */
+/*   Updated: 2018/08/21 13:11:00 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-
-static char		*num2name(int num, t_graph **map)
-{
-	while (*map)
-	{
-		if (num == (*map)->num)
-			return ((*map)->name);
-		map++;
-	}
-	return ("");
-}
 
 static t_graph	*select_start(t_graph **rooms)
 {
@@ -72,16 +61,11 @@ void			algo(t_lem *lem)
 	moves = malloc(sizeof(int) * lem->num_rooms);
 	start = select_start(lem->map);
 	if (start == NULL)
-	{
-		ft_puterror("Error: no starting room");
-		exit(-1);
-	}
+		put_error("Error: no starting room");
 	search(start, &ind, moves);
-	moves[ind] = start->num;
-	while (ind >= 0)
-	{
-		ft_putstr(num2name(moves[ind--], lem->map));
-		ft_putstr("->");
-	}
-	ft_putendl("");
+	if (ind == 0)
+		put_error("Error: no valid path");
+	ind--;
+	print_walk(lem, lem->num_ants, ind, moves);
+	free(moves);
 }
