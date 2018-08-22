@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/19 16:11:34 by event             #+#    #+#             */
-/*   Updated: 2018/08/21 13:24:21 by event            ###   ########.fr       */
+/*   Updated: 2018/08/22 18:32:49 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ void			set_connections(t_graph **rooms, char **raw)
 				ft_puterror("Error: unknown room");
 				exit(-1);
 			}
+			ft_putendl("CONN");
 			add_connection(rooms, room1, room2);
+			ft_putendl("CONN1");
 		}
 		raw++;
 	}
@@ -89,7 +91,8 @@ void			start_end(t_graph **rooms, char **raw, char *opt)
 			{
 				if (ft_strequ(*raw + 2, opt))
 				{
-					raw++;
+					while (**(++raw) == '#')
+						raw++;
 					room = name2num(*raw, rooms, ft_indexcin(*raw, ' '));
 					set_startend(rooms, room, opt);
 					return ;

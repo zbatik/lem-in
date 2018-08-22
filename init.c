@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 15:13:27 by event             #+#    #+#             */
-/*   Updated: 2018/08/21 14:02:12 by event            ###   ########.fr       */
+/*   Updated: 2018/08/22 16:51:56 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,15 @@ t_lem			*init(void)
 	lem->num_rooms = count_rooms(raw);
 	room_names = get_room_names(raw, lem->num_rooms);
 	lem->map = new_map(lem->num_rooms, room_names);
+	ft_putendl("HERE");
 	set_connections(lem->map, raw);
+	ft_putendl("HERE");
 	start_end(lem->map, raw, "start");
 	start_end(lem->map, raw, "end");
+	ft_putendl("HERE");
 	ft_arrdel(&room_names, lem->num_rooms + 1);
+	ft_putendl("HERE");
 	ft_arrdel(&raw, ft_strarrlen(raw));
+	ft_putendl("HERE");
 	return (lem);
 }

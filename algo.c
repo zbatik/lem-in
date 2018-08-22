@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 11:43:40 by event             #+#    #+#             */
-/*   Updated: 2018/08/21 13:24:40 by event            ###   ########.fr       */
+/*   Updated: 2018/08/22 18:33:22 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void			algo(t_lem *lem)
 	ind = 0;
 	moves = malloc(sizeof(int) * lem->num_rooms);
 	start = select_start(lem->map);
+	if (start->start && start->end)
+		return ;
 	if (start == NULL)
 		put_error("Error: no starting room");
 	search(start, &ind, moves);
