@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 11:43:40 by event             #+#    #+#             */
-/*   Updated: 2018/08/22 18:33:22 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/08/23 19:54:18 by zack             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,15 @@ void			algo(t_lem *lem)
 	ind = 0;
 	moves = malloc(sizeof(int) * lem->num_rooms);
 	start = select_start(lem->map);
+	if (start == NULL)
+		put_error(lem, "Error: no starting room");
 	if (start->start && start->end)
 		return ;
-	if (start == NULL)
-		put_error("Error: no starting room");
 	search(start, &ind, moves);
 	if (ind == 0)
-		put_error("Error: no valid path");
+		put_error(lem, "Error: no valid path");
 	ind--;
+	ft_putstrarr(lem->raw);
 	print_walk(lem, lem->num_ants, ind, moves);
 	free(moves);
 }

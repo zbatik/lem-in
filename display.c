@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 13:00:33 by event             #+#    #+#             */
-/*   Updated: 2018/08/21 13:07:01 by event            ###   ########.fr       */
+/*   Updated: 2018/08/23 19:57:30 by zack             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ void		print_map(t_graph **map)
 	}
 }
 
-void		put_error(char *error)
+void		put_error(t_lem *lem, char *error)
 {
 	ft_puterror(error);
+	clean(&lem);
 	exit(-1);
 }

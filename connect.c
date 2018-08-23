@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/19 16:11:34 by event             #+#    #+#             */
-/*   Updated: 2018/08/22 18:32:49 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/08/23 19:57:07 by zack             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_bool	isconnectdesc(char *line)
 	return (0);
 }
 
-void			set_connections(t_graph **rooms, char **raw)
+int			set_connections(t_graph **rooms, char **raw)
 {
 	int room1;
 	int room2;
@@ -48,16 +48,12 @@ void			set_connections(t_graph **rooms, char **raw)
 			room1 = name2num(*raw, rooms, ind);
 			room2 = name2num(*raw + ind + 1, rooms, ft_strlen(*raw + ind));
 			if (room1 == -1 || room2 == -1)
-			{
-				ft_puterror("Error: unknown room");
-				exit(-1);
-			}
-			ft_putendl("CONN");
+				return (0);
 			add_connection(rooms, room1, room2);
-			ft_putendl("CONN1");
 		}
 		raw++;
 	}
+	return (1);
 }
 
 static void		set_startend(t_graph **rooms, int room_num, char *opt)
@@ -78,7 +74,7 @@ static void		set_startend(t_graph **rooms, int room_num, char *opt)
 	}
 }
 
-void			start_end(t_graph **rooms, char **raw, char *opt)
+int			start_end(t_graph **rooms, char **raw, char *opt)
 {
 	int room;
 
@@ -95,10 +91,11 @@ void			start_end(t_graph **rooms, char **raw, char *opt)
 						raw++;
 					room = name2num(*raw, rooms, ft_indexcin(*raw, ' '));
 					set_startend(rooms, room, opt);
-					return ;
+					return (1);
 				}
 			}
 		}
 		raw++;
 	}
+	return (0);
 }
