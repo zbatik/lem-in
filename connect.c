@@ -6,13 +6,13 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/19 16:11:34 by event             #+#    #+#             */
-/*   Updated: 2018/08/23 19:57:07 by zack             ###   ########.fr       */
+/*   Updated: 2018/08/25 15:39:33 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static int		name2num(char *name, t_graph **map, int len)
+static int	name2num(char *name, t_graph **map, int len)
 {
 	while (*map)
 	{
@@ -21,14 +21,6 @@ static int		name2num(char *name, t_graph **map, int len)
 		map++;
 	}
 	return (-1);
-}
-
-static t_bool	isconnectdesc(char *line)
-{
-	if (ft_countc(line, '-') == 1 && *line != '#'
-			&& ft_countc(line, ' ') == 0)
-		return (1);
-	return (0);
 }
 
 int			set_connections(t_graph **rooms, char **raw)
@@ -56,7 +48,7 @@ int			set_connections(t_graph **rooms, char **raw)
 	return (1);
 }
 
-static void		set_startend(t_graph **rooms, int room_num, char *opt)
+static void	set_startend(t_graph **rooms, int room_num, char *opt)
 {
 	while (*rooms)
 	{
@@ -87,7 +79,8 @@ int			start_end(t_graph **rooms, char **raw, char *opt)
 			{
 				if (ft_strequ(*raw + 2, opt))
 				{
-					while (**(++raw) == '#')
+					raw++;
+					while (**raw == '#')
 						raw++;
 					room = name2num(*raw, rooms, ft_indexcin(*raw, ' '));
 					set_startend(rooms, room, opt);

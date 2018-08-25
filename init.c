@@ -6,30 +6,27 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 15:13:27 by event             #+#    #+#             */
-/*   Updated: 2018/08/23 19:59:23 by zack             ###   ########.fr       */
+/*   Updated: 2018/08/25 15:37:06 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-#define MAX_MAP_SIZE 64
+#define MAX_MAP_SIZE 4096
 
-static void	get_input(t_lem *lem)
+static void		get_input(t_lem *lem)
 {
 	char	buf[MAX_MAP_SIZE];
 	int		ret;
 
 	ret = read(0, &buf, MAX_MAP_SIZE);
-	if (ret < 1 || ret == MAX_MAP_SIZE)
+	if (ret < 1)
 		put_error(lem, "Error: bad input");
+	if (ret == MAX_MAP_SIZE)
+		put_error(lem, "Error: map too large - limit 4kb");
 	buf[ret] = 0;
 	lem->raw = ft_strsplit(buf, '\n');
-}
-
-static t_bool	isroomdesc(char *line)
-{
-	if (ft_countc(line, ' ') == 2 && *line != '#')
-		return (1);
-	return (0);
+	if (!is_vaild(lem->raw))
+		put_error(lem, "Error: invalid map");
 }
 
 static int		count_rooms(char **raw)
@@ -68,12 +65,24 @@ static char		**get_room_names(t_lem *lem, char **raw, int num_rooms)
 	return (room_names);
 }
 
+static t_lem	*init_struct(void)
+{
+	t_lem	*lem;
+
+	lem = malloc(sizeof(lem));
+	lem->num_ants = 0;
+	lem->num_rooms = 0;
+	lem->raw = NULL;
+	lem->map = NULL;
+	return (lem);
+}
+
 t_lem			*init(void)
 {
 	char	**room_names;
 	t_lem	*lem;
 
-	lem = malloc(sizeof(lem));
+	lem = init_struct();
 	get_input(lem);
 	if (ft_isnumber(lem->raw[0]))
 		lem->num_ants = ft_atoi(lem->raw[0]);
@@ -88,7 +97,7 @@ t_lem			*init(void)
 		put_error(lem, "Error unknown room");
 	if (!start_end(lem->map, lem->raw, "start"))
 		put_error(lem, "Error no start");
-	if (start_end(lem->map, lem->raw, "end"))
+	if (!start_end(lem->map, lem->raw, "end"))
 		put_error(lem, "Error no end");
 	ft_arrdel(&room_names, lem->num_rooms + 1);
 	return (lem);

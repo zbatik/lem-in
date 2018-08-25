@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 13:00:33 by event             #+#    #+#             */
-/*   Updated: 2018/08/23 19:57:30 by zack             ###   ########.fr       */
+/*   Updated: 2018/08/25 14:03:03 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ void		print_map(t_graph **map)
 		print_room(*map);
 		map++;
 	}
+}
+
+void		print_input(t_lem *lem)
+{
+	ft_putnbr(lem->num_ants);
+	ft_putchar('\n');
+	ft_putstrarr(lem->raw + 1);
+	ft_putchar('\n');
 }
 
 void		put_error(t_lem *lem, char *error)

@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 13:08:30 by event             #+#    #+#             */
-/*   Updated: 2018/08/21 13:15:40 by event            ###   ########.fr       */
+/*   Updated: 2018/08/25 14:04:33 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ static char		*num2name(int num, t_graph **map)
 	return ("");
 }
 
-void			print_walk(t_lem *lem, int num_ants, int ind, int *moves)
+void			print_walk(t_lem *lem, int ind, int *moves)
 {
 	int i;
 	int j;
 
 	i = -1;
-	while (++i < num_ants)
+	while (++i < lem->num_ants)
 	{
 		j = -1;
 		while (++j <= ind)

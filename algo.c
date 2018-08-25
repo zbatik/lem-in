@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 11:43:40 by event             #+#    #+#             */
-/*   Updated: 2018/08/23 19:54:18 by zack             ###   ########.fr       */
+/*   Updated: 2018/08/25 14:10:32 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,16 @@ void			algo(t_lem *lem)
 	if (start == NULL)
 		put_error(lem, "Error: no starting room");
 	if (start->start && start->end)
+	{
+		print_input(lem);
+		free(moves);
 		return ;
+	}
 	search(start, &ind, moves);
 	if (ind == 0)
 		put_error(lem, "Error: no valid path");
 	ind--;
-	ft_putstrarr(lem->raw);
-	print_walk(lem, lem->num_ants, ind, moves);
+	print_input(lem);
+	print_walk(lem, ind, moves);
 	free(moves);
 }

@@ -1,0 +1,311 @@
+__________________________
+./duplicateconnect.test
+__________________________
+3
+##start
+start 0 0
+##end
+end 0 0
+start-end
+end-start
+
+L1-end
+L2-end
+L3-end
+
+__________________________
+./invalidmap.test
+__________________________
+
+__________________________
+./loop0.test
+__________________________
+3
+##start
+start 0 0
+##end
+end 1 1
+mid0 2 2
+mid1 3 3
+start-mid0
+mid0-mid1
+mid1-start
+start-end
+
+L1-end
+L2-end
+L3-end
+
+__________________________
+./loop1.test
+__________________________
+
+__________________________
+./map0.test
+__________________________
+3
+##start
+0 1 0
+##end
+1 5 0
+2 9 0
+3 13 0
+0-2
+2-3
+3-1
+
+L1-2
+L1-3
+L1-1
+L2-2
+L2-3
+L2-1
+L3-2
+L3-3
+L3-1
+
+__________________________
+./map1.test
+__________________________
+3
+2 5 0
+##start
+0 1 2
+##end
+1 9 2
+3 5 4
+0-2
+0-3
+2-1
+3-1
+2-3
+
+L1-2
+L1-1
+L2-2
+L2-1
+L3-2
+L3-1
+
+__________________________
+./map2.test
+__________________________
+6
+2 5 0
+##start
+0 1 2
+##end
+1 9 2
+3 5 4
+hat 5 6
+rabbit 2 1
+0-2
+0-3
+2-1
+3-1
+2-3
+hat-rabbit
+
+L1-2
+L1-1
+L2-2
+L2-1
+L3-2
+L3-1
+L4-2
+L4-1
+L5-2
+L5-1
+L6-2
+L6-1
+
+__________________________
+./map3.test
+__________________________
+32
+##start
+hat 5 0
+cat 1 2
+car 9 2
+##end
+rabbit 5 4
+hat-cat
+cat-car
+car-rabbit
+
+L1-cat
+L1-car
+L1-rabbit
+L2-cat
+L2-car
+L2-rabbit
+L3-cat
+L3-car
+L3-rabbit
+L4-cat
+L4-car
+L4-rabbit
+L5-cat
+L5-car
+L5-rabbit
+L6-cat
+L6-car
+L6-rabbit
+L7-cat
+L7-car
+L7-rabbit
+L8-cat
+L8-car
+L8-rabbit
+L9-cat
+L9-car
+L9-rabbit
+L10-cat
+L10-car
+L10-rabbit
+L11-cat
+L11-car
+L11-rabbit
+L12-cat
+L12-car
+L12-rabbit
+L13-cat
+L13-car
+L13-rabbit
+L14-cat
+L14-car
+L14-rabbit
+L15-cat
+L15-car
+L15-rabbit
+L16-cat
+L16-car
+L16-rabbit
+L17-cat
+L17-car
+L17-rabbit
+L18-cat
+L18-car
+L18-rabbit
+L19-cat
+L19-car
+L19-rabbit
+L20-cat
+L20-car
+L20-rabbit
+L21-cat
+L21-car
+L21-rabbit
+L22-cat
+L22-car
+L22-rabbit
+L23-cat
+L23-car
+L23-rabbit
+L24-cat
+L24-car
+L24-rabbit
+L25-cat
+L25-car
+L25-rabbit
+L26-cat
+L26-car
+L26-rabbit
+L27-cat
+L27-car
+L27-rabbit
+L28-cat
+L28-car
+L28-rabbit
+L29-cat
+L29-car
+L29-rabbit
+L30-cat
+L30-car
+L30-rabbit
+L31-cat
+L31-car
+L31-rabbit
+L32-cat
+L32-car
+L32-rabbit
+
+__________________________
+./map4.test
+__________________________
+3
+##start
+0 0 0
+1 1 1
+2 2 2
+##end
+3 3 3
+0-1
+0-2
+0-3
+
+L1-3
+L2-3
+L3-3
+
+__________________________
+./map5.test
+__________________________
+3
+##start
+start 0 0
+##end
+end 1 1
+0 0 0
+1 1 1
+2 2 2
+3 3 3
+start-0
+0-1
+0-2
+0-3
+3-end
+
+L1-0
+L1-3
+L1-end
+L2-0
+L2-3
+L2-end
+L3-0
+L3-3
+L3-end
+
+__________________________
+./noant.test
+__________________________
+
+__________________________
+./noend.test
+__________________________
+
+__________________________
+./noexistroom.test
+__________________________
+
+__________________________
+./nopath.test
+__________________________
+
+__________________________
+./noroom.test
+__________________________
+
+__________________________
+./nostart.test
+__________________________
+
+__________________________
+./startisend.test
+__________________________
+3
+##end
+##start
+start 0 0
+
+

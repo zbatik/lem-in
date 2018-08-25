@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:47:03 by event             #+#    #+#             */
-/*   Updated: 2018/08/23 19:45:03 by zack             ###   ########.fr       */
+/*   Updated: 2018/08/25 15:36:55 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static t_graph	*new_room(int room_num, int num_rooms, char *room_name)
 {
-	t_graph *room;
-	int i;
+	t_graph	*room;
+	int		i;
 
 	room = malloc(sizeof(t_graph));
 	room->name = room_name;
@@ -76,8 +76,8 @@ void			add_connection(t_graph **rooms, int room1, int room2)
 
 void			map_del(t_graph ***room_list, int num_rooms)
 {
-	int i;
-	t_graph *room;
+	int		i;
+	t_graph	*room;
 
 	i = -1;
 	while (++i < num_rooms)
